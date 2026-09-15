@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMMEx Website</title>
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 1. Header (Blue Background) */
+        header {
+            background-color: #0044ff;
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        /* Navigation and Sub-menus */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #002288;
+            border-radius: 4px;
+        }
+
+        /* Dropdown/Sub-menu styling */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #002288;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .submenu li {
+            width: 100%;
+        }
+
+        .submenu li a {
+            padding: 12px 16px;
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        /* Show Sub-menu on Hover */
+        nav ul li:hover .submenu {
+            display: block;
+        }
+
+        /* 2. Announcement / Notification Bar (Red Scrolling) */
+        .announcement-bar {
+            background-color: #ff0000;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 8px 0;
+            font-weight: bold;
+        }
+
+        .announcement-bar marquee {
+            font-size: 16px;
+        }
+
+        /* Main Content Container */
+        .main-content {
+            flex: 1;
+            padding: 40px 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* 3. Media Section (Center Scrolling Images + Video below) */
+        .media-section {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .media-section h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Scrolling Images Container */
+        .image-scroll-container {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .image-scroll-container marquee img {
+            height: 150px;
+            margin: 0 15px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        /* Video Screen Container */
+        .video-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-height: 450px;
+            border-radius: 4px;
+            background: #000;
+        }
+
+        /* 4. Footer (Address Left, Map Center, Contact Center Scroll) */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            border-top: 5px solid #0044ff;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .footer-left h3 {
+            color: #0044ff;
+            margin-bottom: 10px;
+        }
+
+        .footer-left p {
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .footer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Embedded Map Iframe mockup container */
+        .map-box {
+            width: 100%;
+            height: 150px;
+            background-color: #444;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .map-box iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Contact Number Center Scroll inside Footer */
+        .footer-contact-scroll {
+            grid-column: span 2;
+            background: #111;
+            padding: 10px 0;
+            margin-top: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .footer-contact-scroll marquee {
+            color: #ffcc00;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER SECTION -->
+    <header>
+        <div class="logo-container">
+            <!-- Replace 'logo.png' with your actual logo image file path -->
+            <img src="logo.png" alt="JMMEx Logo">
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Menu ☰</a>
+                    <!-- Sub-menu Dropdown items -->
+                    <ul class="submenu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="history.html">History</a></li>
+                        <!-- Note: To handle Excel formatting/insert data features, you will need to add JavaScript later -->
+                        <li><a href="milestones.html">Milestones (Excel Data)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. ANNOUNCEMENT / NOTIFICATION BAR -->
+    <div class="announcement-bar">
+        <marquee behavior="scroll" direction="left" scrollamount="6">
+            ⚠️ Important Announcement: Welcome to the new JMMEx portal! Stay tuned for latest notification updates here.
+        </marquee>
+    </div>
+
+    <!-- MAIN BODY CONTENT -->
+    <main class="main-content">
+        
+        <section class="media-section">
+            <h2>Gallery & Updates</h2>
+            
+            <!-- Center Scrolling Images -->
+            <div class="image-scroll-container">
+                <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
+<img src="loyola.jpg" alt="A scenic view of mountains" width="400" height="200">
+                    <img src="https://placeholder.com" alt="Gallery 2">
+                    <img src="https://placeholder.com" alt="Gallery 3">
+                    <img src="https://placeholder.com" alt="Gallery 4">
+                </marquee>
+            </div>
+
+            <!-- Video Screen below Scrolling Images -->
+            <div class="video-container">
+                <video controls poster="https://placeholder.com">
+                    <!-- Replace with your actual video file path or URL link -->
+                    <source src="movie.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 4. FOOTER SECTION -->
+    <footer>
+        <!-- Bottom Left Address -->
+        <div class="footer-left">
+            <h3>Jesuit Migrants Ministry External (JMMEx) </h3>
+                <p>Kasthambadi, 
+                <p> Polur-Arni Main Road, </p>
+                <p>Tiruvannamalai-606 903.</p>
+            </p>
+        </div>
+
+        <!-- Center Location with Map Map Frame -->
+        <div class="footer-center">
+            <div class="map-box">
+                <!-- Replace src with your custom Google Maps embed link if needed -->
+<div class="map-container">
+  <!-- 1. The Real Interactive/Visual Map -->
+<a href="https://maps.app.goo.gl/ZAbHXJ5AjLyBLRjX6" 
+     target="_blank" 
+     class="map-redirect-overlay"
+     title="Click to view larger map">
+     <span>Click to open in Google Maps</span>
+  </a>
+</div>    
+            </div>
+
+        <!-- Contact number scrolling at the very bottom area of footer -->
+        <div class="footer-contact-scroll">
+            <marquee behavior="scroll" direction="left" scrollamount="4">
+                📞 Contact Us: +91 98765 43210 | ✉️ Support: info@jmmex.com
+            </marquee>
+        </div>
+    </footer>
+
+</body>
+</html>
